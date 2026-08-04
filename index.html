@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אסתי שטיינמץ | סטודיו לעיצוב פרחים ואירועים</title>
+<style>
+  :root{
+    --cream:#f8f2e7;
+    --cream-deep:#efe0c9;
+    --sage:#57644a;
+    --sage-deep:#333c29;
+    --sage-light:#8fa07c;
+    --blush:#d9a9a0;
+    --blush-deep:#c07f74;
+    --gold:#c6a15b;
+    --gold-light:#e7d09c;
+    --ink:#2b2a20;
+    --ink-dim:#6c6353;
+    --font-display:"Frank Ruhl Libre","David Libre","Adobe Hebrew","Georgia",serif;
+    --font-body:"Assistant","Heebo","Segoe UI","Arial Hebrew","Arial",sans-serif;
+    --header-h:4.75rem;
+  }
+
+  *{box-sizing:border-box;}
+  html{background:var(--cream);}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    html{scroll-behavior:smooth;}
+  }
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  button{font-family:inherit;}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+  .container{
+    max-width:1180px;
+    margin-inline:auto;
+    padding-inline:clamp(1.25rem,4vw,3rem);
+  }
+
+  section[id]{scroll-margin-top:var(--header-h);}
+
+  h1,h2,h3{margin:0;text-wrap:balance;}
+  .font-serif{font-family:var(--font-display);}
+
+  .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.18em;
+    color:var(--gold);
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    gap:0.5em;
+  }
+  .eyebrow svg{width:0.95em;height:0.95em;flex:none;}
+
+  .section-title{
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:clamp(1.9rem,4.2vw,2.7rem);
+    line-height:1.15;
+    margin-top:0.55rem;
+    color:var(--ink);
+  }
+  .section-head{max-width:38rem;margin-bottom:clamp(2.2rem,5vw,3.4rem);}
+  .section-head.center{margin-inline:auto;text-align:center;}
+  .section{padding-block:clamp(4rem,9vw,7rem);}
+
+  /* ---------- scroll reveal ---------- */
+  [data-animate]{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+  [data-animate].is-visible{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    [data-animate]{opacity:1!important;transform:none!important;transition:none!important;}
+  }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:0.6em;
+    padding:0.9em 1.8em;font-weight:700;font-size:0.95rem;
+    text-decoration:none;border-radius:999px;border:1px solid transparent;
+    cursor:pointer;transition:transform .3s ease,box-shadow .3s ease,background .3s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-gold{
+    background:linear-gradient(100deg,var(--gold),var(--gold-light));
+    color:#3a2e12;
+    box-shadow:0 0 0 0 rgba(198,161,91,0.55),0 12px 28px -12px rgba(198,161,91,0.7);
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .btn-gold{animation:glow 3.2s ease-in-out infinite;}
+  }
+  @keyframes glow{
+    0%,100%{box-shadow:0 0 0 0 rgba(198,161,91,0.45),0 12px 28px -12px rgba(198,161,91,0.7);}
+    50%{box-shadow:0 0 0 10px rgba(198,161,91,0),0 16px 34px -10px rgba(198,161,91,0.85);}
+  }
+  .btn-outline{background:transparent;border-color:rgba(43,42,32,0.28);color:var(--ink);}
+  .btn-outline:hover{border-color:var(--sage);color:var(--sage);}
+  .btn-sm{padding:0.6em 1.3em;font-size:0.85rem;}
+
+  /* ---------- glass ---------- */
+  .glass{
+    background:rgba(255,255,255,0.42);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border:1px solid rgba(255,255,255,0.6);
+    box-shadow:0 20px 44px -26px rgba(43,42,32,0.35);
+  }
+  .glass-dark{
+    background:rgba(255,255,255,0.07);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border:1px solid rgba(255,255,255,0.14);
+  }
+
+  /* ---------- header ---------- */
+  .site-header{
+    position:sticky;top:0;z-index:50;height:var(--header-h);
+    display:flex;align-items:center;
+    background:rgba(248,242,231,0.72);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(43,42,32,0.08);
+    transition:box-shadow .3s ease;
+  }
+  .site-header.scrolled{box-shadow:0 8px 24px -16px rgba(43,42,32,0.4);}
+  .header-inner{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+    position:relative;
+  }
+  .logo{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    font-family:var(--font-display);font-style:italic;font-weight:600;
+    font-size:1.2rem;color:var(--ink);text-decoration:none;
+  }
+  .logo svg{width:1.3rem;height:1.3rem;color:var(--gold);}
+  .main-nav{display:flex;align-items:center;gap:2.1rem;}
+  .main-nav a{
+    font-size:0.94rem;font-weight:600;color:var(--ink-dim);text-decoration:none;
+    position:relative;padding-block:0.3rem;transition:color .25s ease;
+  }
+  .main-nav a::after{
+    content:"";position:absolute;inset-inline:0;bottom:0;height:1px;
+    background:var(--gold);transform:scaleX(0);transform-origin:center;
+    transition:transform .3s ease;
+  }
+  .main-nav a:hover{color:var(--ink);}
+  .main-nav a:hover::after{transform:scaleX(1);}
+  .header-cta{display:flex;align-items:center;gap:0.9rem;}
+  .nav-toggle{
+    display:none;width:2.3rem;height:2.3rem;border:1px solid rgba(43,42,32,0.2);
+    background:transparent;border-radius:6px;cursor:pointer;
+    align-items:center;justify-content:center;
+  }
+  .nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{
+    content:"";display:block;width:1.1rem;height:1.5px;background:var(--ink);
+    position:relative;transition:transform .25s ease,opacity .25s ease;
+  }
+  .nav-toggle span::before{position:absolute;top:-6px;}
+  .nav-toggle span::after{position:absolute;top:6px;}
+  .nav-toggle[aria-expanded="true"] span{background:transparent;}
+  .nav-toggle[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg);}
+  .nav-toggle[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg);}
+
+  @media (max-width:900px){
+    .main-nav{
+      position:absolute;top:100%;right:0;left:0;flex-direction:column;
+      align-items:stretch;gap:0;background:rgba(248,242,231,0.98);
+      border-bottom:1px solid rgba(43,42,32,0.1);
+      max-height:0;overflow:hidden;transition:max-height .35s ease;
+    }
+    .main-nav.open{max-height:20rem;}
+    .main-nav a{padding:1rem clamp(1.25rem,4vw,3rem);border-top:1px solid rgba(43,42,32,0.06);}
+    .header-cta .btn-sm-desktop{display:none;}
+    .nav-toggle{display:inline-flex;}
+  }
+
+  /* ---------- ambient petals ---------- */
+  .ambient{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+  .ambient .p{position:absolute;opacity:0.22;}
+  @media (prefers-reduced-motion:no-preference){
+    .ambient .p{animation:drift linear infinite;}
+  }
+  @keyframes drift{
+    0%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-18px) rotate(8deg);}
+    100%{transform:translateY(0) rotate(0deg);}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding-block:clamp(4rem,10vh,6.5rem) clamp(3rem,8vh,5rem);
+    background:
+      radial-gradient(70% 60% at 85% 0%, rgba(198,161,91,0.16), transparent 60%),
+      radial-gradient(60% 55% at 5% 15%, rgba(217,169,160,0.22), transparent 55%),
+      radial-gradient(70% 60% at 30% 100%, rgba(87,100,74,0.14), transparent 60%),
+      var(--cream);
+  }
+  .hero-grid{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(2rem,5vw,4rem);
+    align-items:center;
+  }
+  @media (max-width:960px){.hero-grid{grid-template-columns:1fr;}}
+  .hero-headline{
+    font-size:clamp(2.5rem,5.4vw,4.2rem);
+    line-height:1.14;font-weight:600;color:var(--ink);
+  }
+  .hero-headline em{
+    font-style:italic;
+    background:linear-gradient(100deg,var(--blush-deep),var(--gold));
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+  .hero-sub{
+    margin-top:1.4rem;max-width:32rem;font-size:clamp(1.02rem,1.7vw,1.2rem);
+    line-height:1.85;color:var(--ink-dim);
+  }
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.2rem;}
+  .hero-stats{display:flex;gap:2.2rem;margin-top:2.6rem;}
+  .hero-stats div{font-family:var(--font-display);font-size:1.5rem;color:var(--sage);}
+  .hero-stats span{display:block;font-family:var(--font-body);font-size:0.78rem;color:var(--ink-dim);margin-top:0.2rem;}
+
+  /* floating collage */
+  .collage{position:relative;height:clamp(320px,42vw,460px);}
+  .collage-card{
+    position:absolute;border-radius:18px;overflow:hidden;
+    box-shadow:0 24px 50px -22px rgba(43,42,32,0.4);
+    border:1px solid rgba(255,255,255,0.6);
+  }
+  .collage-card svg{width:100%;height:100%;}
+  @media (prefers-reduced-motion:no-preference){
+    .collage-card{animation:bob 6s ease-in-out infinite;}
+  }
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  .c1{width:52%;aspect-ratio:4/5;top:0;right:0;animation-delay:0s;}
+  .c2{width:46%;aspect-ratio:1/1;bottom:6%;left:0;animation-delay:1.2s;}
+  .c3{width:34%;aspect-ratio:3/4;top:20%;left:6%;animation-delay:2.4s;z-index:2;box-shadow:0 30px 60px -20px rgba(43,42,32,0.45);}
+
+  /* ---------- gallery ---------- */
+  .gallery{background:var(--cream-deep);}
+  .masonry{
+    display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:12rem;gap:1rem;
+  }
+  @media (max-width:900px){.masonry{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.masonry{grid-template-columns:1fr;}}
+  .g-item{
+    position:relative;border-radius:14px;overflow:hidden;cursor:pointer;
+    grid-column:span 2;grid-row:span 2;
+  }
+  .g-item.tall{grid-row:span 3;}
+  .g-item.wide{grid-column:span 2;}
+  .g-item svg{width:100%;height:100%;transition:transform .6s ease;}
+  .g-item:hover svg{transform:scale(1.08);}
+  .g-overlay{
+    position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:1.1rem;background:linear-gradient(0deg,rgba(43,42,32,0.78) 0%,rgba(43,42,32,0.05) 55%,transparent 100%);
+    opacity:0;transition:opacity .4s ease;
+  }
+  .g-item:hover .g-overlay{opacity:1;}
+  .g-cat{font-size:0.7rem;letter-spacing:0.14em;color:var(--gold-light);font-weight:700;}
+  .g-title{color:var(--cream);font-family:var(--font-display);font-size:1.15rem;margin-top:0.2rem;}
+
+  /* ---------- why choose us ---------- */
+  .why{
+    background:linear-gradient(160deg,var(--sage-deep),#28301f);
+    color:var(--cream);position:relative;overflow:hidden;
+  }
+  .why .section-title,.why .eyebrow{color:var(--cream);}
+  .why .eyebrow{color:var(--gold-light);}
+  .why .section-head p{color:rgba(248,242,231,0.72);}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1.4rem;}
+  .why-card{padding:2rem 1.6rem;border-radius:16px;text-align:start;}
+  .why-icon{
+    width:2.6rem;height:2.6rem;color:var(--gold-light);margin-bottom:1.1rem;
+  }
+  .why-card h3{font-size:1.08rem;font-weight:700;margin-bottom:0.5rem;}
+  .why-card p{font-size:0.92rem;line-height:1.7;color:rgba(248,242,231,0.72);margin:0;}
+
+  /* ---------- packages ---------- */
+  .packages{background:var(--cream);}
+  .pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.6rem;}
+  .pkg-card{
+    position:relative;padding:2.4rem 2rem;border-radius:20px;
+    display:flex;flex-direction:column;gap:1rem;
+  }
+  .pkg-card.featured{
+    background:linear-gradient(165deg,rgba(198,161,91,0.16),rgba(255,255,255,0.5));
+    border-color:rgba(198,161,91,0.4);
+  }
+  .pkg-badge{
+    position:absolute;top:-0.8rem;right:1.6rem;background:var(--gold);color:#3a2e12;
+    font-size:0.72rem;font-weight:700;padding:0.35em 0.9em;border-radius:999px;
+  }
+  .pkg-icon{width:2.4rem;height:2.4rem;color:var(--sage);}
+  .pkg-card h3{font-family:var(--font-display);font-size:1.4rem;font-weight:600;color:var(--ink);}
+  .pkg-card p{font-size:0.95rem;line-height:1.75;color:var(--ink-dim);margin:0;flex:1;}
+  .pkg-card .btn{align-self:flex-start;margin-top:0.4rem;}
+
+  /* ---------- about ---------- */
+  .about{background:var(--cream-deep);}
+  .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:clamp(2rem,5vw,4rem);align-items:center;}
+  @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
+  .about-photo{
+    position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;
+    box-shadow:0 26px 50px -24px rgba(43,42,32,0.4);
+  }
+  .about-photo svg{width:100%;height:100%;}
+  .about-photo-note{
+    position:absolute;bottom:0.8rem;right:0.8rem;left:0.8rem;
+    font-size:0.72rem;text-align:center;color:#3a2e12;background:rgba(255,255,255,0.7);
+    border:1px dashed var(--gold);border-radius:8px;padding:0.4em 0.6em;
+  }
+  .about-text p{font-size:1.05rem;line-height:1.9;color:var(--ink-dim);max-width:34rem;}
+  .about-quote{
+    font-family:var(--font-display);font-style:italic;font-size:1.3rem;color:var(--sage);
+    margin-block:1.4rem;border-inline-start:3px solid var(--gold);padding-inline-start:1rem;
+  }
+
+  /* ---------- testimonials ---------- */
+  .testimonials{background:var(--cream);}
+  .t-carousel{display:flex;gap:1.4rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:0.6rem;}
+  .t-carousel::-webkit-scrollbar{height:6px;}
+  .t-carousel::-webkit-scrollbar-thumb{background:rgba(43,42,32,0.2);border-radius:99px;}
+  .t-card{
+    scroll-snap-align:start;flex:0 0 min(22rem,86vw);padding:2rem 1.8rem;border-radius:18px;
+    display:flex;flex-direction:column;gap:0.9rem;position:relative;
+  }
+  .t-stars{color:var(--gold);letter-spacing:0.15em;font-size:0.95rem;}
+  .t-quote{font-family:var(--font-display);font-style:italic;font-size:1.08rem;line-height:1.7;color:var(--ink);margin:0;}
+  .t-name{font-size:0.86rem;font-weight:700;color:var(--sage);}
+  .t-role{font-size:0.78rem;color:var(--ink-dim);}
+  .t-sample{
+    position:absolute;top:0.9rem;left:0.9rem;font-size:0.66rem;color:var(--blush-deep);
+    border:1px dashed var(--blush-deep);border-radius:999px;padding:0.2em 0.7em;
+  }
+  .t-controls{display:flex;gap:0.7rem;margin-top:1.4rem;}
+  .t-controls button{
+    width:2.4rem;height:2.4rem;border-radius:50%;border:1px solid rgba(43,42,32,0.2);
+    background:var(--cream);cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .25s ease,border-color .25s ease;
+  }
+  .t-controls button:hover{background:var(--gold-light);border-color:var(--gold);}
+
+  /* ---------- contact ---------- */
+  .contact{
+    background:linear-gradient(165deg,var(--sage-deep),#242b1c);color:var(--cream);
+    position:relative;overflow:hidden;
+  }
+  .contact .eyebrow{color:var(--gold-light);}
+  .contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start;}
+  @media (max-width:900px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-info h2{color:var(--cream);}
+  .contact-info p{color:rgba(248,242,231,0.75);line-height:1.85;font-size:1.02rem;max-width:26rem;}
+  .contact-channel{
+    display:flex;align-items:center;gap:0.8rem;margin-top:1.6rem;padding:0.9rem 1.1rem;
+    border-radius:12px;
+  }
+  .contact-channel svg{width:1.4rem;height:1.4rem;color:var(--gold-light);flex:none;}
+  .contact-channel .lbl{font-size:0.78rem;color:rgba(248,242,231,0.6);}
+  .contact-channel .val{font-weight:700;}
+  .todo-note{
+    display:inline-block;margin-top:0.5rem;font-size:0.72rem;color:var(--gold-light);
+    border:1px dashed rgba(231,208,156,0.6);border-radius:6px;padding:0.3em 0.7em;
+  }
+
+  .form-card{padding:clamp(1.6rem,3vw,2.4rem);border-radius:20px;}
+  .field{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.1rem;}
+  .field label{font-size:0.82rem;font-weight:700;color:var(--cream);}
+  .field input,.field select,.field textarea{
+    font-family:inherit;font-size:0.95rem;padding:0.75em 0.9em;border-radius:10px;
+    border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.9);color:var(--ink);
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold);outline-offset:1px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  @media (max-width:520px){.field-row{grid-template-columns:1fr;}}
+  .form-submit{width:100%;justify-content:center;margin-top:0.4rem;}
+  .form-success{
+    display:none;margin-top:1rem;padding:0.8em 1em;border-radius:10px;
+    background:rgba(198,161,91,0.22);border:1px solid rgba(198,161,91,0.5);
+    font-size:0.9rem;color:var(--gold-light);
+  }
+  .form-success.show{display:block;}
+
+  /* ---------- footer ---------- */
+  footer{background:#242b1c;color:rgba(248,242,231,0.65);}
+  .footer-grid{
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;
+    padding-block:3rem;border-bottom:1px solid rgba(248,242,231,0.1);
+  }
+  .footer-logo{font-family:var(--font-display);font-style:italic;font-size:1.3rem;color:var(--cream);}
+  .footer-tag{font-size:0.85rem;margin-top:0.5rem;max-width:20rem;line-height:1.7;}
+  .footer-links{display:flex;gap:2.5rem;flex-wrap:wrap;}
+  .footer-col h4{font-size:0.82rem;color:var(--cream);margin-bottom:0.9rem;letter-spacing:0.08em;}
+  .footer-col a{display:block;font-size:0.86rem;margin-bottom:0.6rem;text-decoration:none;color:rgba(248,242,231,0.65);transition:color .2s ease;}
+  .footer-col a:hover{color:var(--gold-light);}
+  .footer-bottom{
+    padding-block:1.4rem;text-align:center;font-size:0.78rem;
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="bloom" viewBox="0 0 100 100">
+      <g fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round">
+        <path d="M50,50 C41,38 39,16 50,4 C61,16 59,38 50,50 Z" transform="rotate(0 50 50)"/>
+        <path d="M50,50 C41,38 39,16 50,4 C61,16 59,38 50,50 Z" transform="rotate(72 50 50)"/>
+        <path d="M50,50 C41,38 39,16 50,4 C61,16 59,38 50,50 Z" transform="rotate(144 50 50)"/>
+        <path d="M50,50 C41,38 39,16 50,4 C61,16 59,38 50,50 Z" transform="rotate(216 50 50)"/>
+        <path d="M50,50 C41,38 39,16 50,4 C61,16 59,38 50,50 Z" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="3.4" fill="currentColor"/>
+    </symbol>
+    <symbol id="leaf" viewBox="0 0 60 120">
+      <path d="M30,116 C10,90 10,30 30,4 C50,30 50,90 30,116 Z" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.1"/>
+      <path d="M30,10 L30,110" stroke="currentColor" stroke-width="0.7" opacity="0.4"/>
+    </symbol>
+    <symbol id="icon-heart" viewBox="0 0 48 48"><path d="M24,40 C10,30 4,21 4,14.5 C4,8.5 9,4 15,4 C19,4 22.5,6.5 24,10 C25.5,6.5 29,4 33,4 C39,4 44,8.5 44,14.5 C44,21 38,30 24,40 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-truck" viewBox="0 0 48 48"><rect x="4" y="14" width="24" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M28,20 H38 L44,26 V30 H28 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="14" cy="34" r="3.4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="36" cy="34" r="3.4" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+    <symbol id="icon-sparkle" viewBox="0 0 48 48"><path d="M24,4 L28,20 L44,24 L28,28 L24,44 L20,28 L4,24 L20,20 Z" fill="currentColor"/></symbol>
+    <symbol id="icon-whatsapp" viewBox="0 0 32 32"><path fill="currentColor" d="M16 3C9 3 3.4 8.6 3.4 15.6c0 2.6.7 5 1.9 7.1L3 29l6.5-2.2c2 1.1 4.3 1.7 6.5 1.7 7 0 12.6-5.6 12.6-12.6C28.6 8.6 23 3 16 3zm0 22.9c-2 0-3.9-.5-5.6-1.5l-.4-.2-4 1.4 1.3-3.9-.3-.4a10.2 10.2 0 0 1-1.6-5.6c0-5.7 4.6-10.3 10.3-10.3 5.7 0 10.3 4.6 10.3 10.3S21.4 25.9 16 25.9zm5.6-7.6c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1a8.3 8.3 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.3c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.4 4.7.8.3 1.4.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></symbol>
+  </defs>
+</svg>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="logo" href="#top">
+        <svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>
+        אסתי שטיינמץ
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <a href="#about">אודות</a>
+        <a href="#gallery">גלריה</a>
+        <a href="#packages">חבילות</a>
+        <a href="#testimonials">המלצות</a>
+      </nav>
+      <div class="header-cta">
+        <a class="btn btn-gold btn-sm btn-sm-desktop" href="#contact">להזמנת שזירה אישית</a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="תפריט">
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="ambient" aria-hidden="true">
+      <svg class="p" viewBox="0 0 100 100" style="width:34px;top:12%;right:8%;color:var(--blush);animation-duration:9s"><use href="#bloom"></use></svg>
+      <svg class="p" viewBox="0 0 60 120" style="width:20px;top:65%;right:20%;color:var(--sage-light);animation-duration:11s;animation-delay:-3s"><use href="#leaf"></use></svg>
+      <svg class="p" viewBox="0 0 100 100" style="width:24px;top:30%;left:10%;color:var(--gold);animation-duration:8s;animation-delay:-1.5s"><use href="#bloom"></use></svg>
+      <svg class="p" viewBox="0 0 60 120" style="width:18px;top:80%;left:22%;color:var(--sage-light);animation-duration:10s;animation-delay:-5s"><use href="#leaf"></use></svg>
+      <svg class="p" viewBox="0 0 100 100" style="width:16px;top:50%;left:45%;color:var(--blush);animation-duration:7.5s;animation-delay:-2s"><use href="#bloom"></use></svg>
+    </div>
+
+    <div class="container hero-grid">
+      <div data-animate>
+        <p class="eyebrow"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>סטודיו בוטיק לעיצוב פרחים ואירועים</p>
+        <h1 class="hero-headline font-serif">להפוך רגעים מתוקים<br>ל<em>אמנות שוזרת חיים</em></h1>
+        <p class="hero-sub">עיצוב פרחים אישי לחתונות ואירועים, זרים יוקרתיים ועיצוב חללים — בכל פרח מסופר סיפור שלם.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-gold" href="#contact">להזמנת שזירה אישית</a>
+          <a class="btn btn-outline" href="#gallery">לצפייה בגלריה</a>
+        </div>
+        <div class="hero-stats">
+          <div>100%<span>עבודת יד</span></div>
+          <div>1:1<span>עיצוב אישי</span></div>
+          <div>A–Z<span>ליווי מלא לאירוע</span></div>
+        </div>
+      </div>
+
+      <div class="collage" data-animate>
+        <div class="collage-card c1">
+          <svg viewBox="0 0 300 380"><rect width="300" height="380" fill="#efe0c9"/><use href="#bloom" x="60" y="40" width="120" height="120" style="color:var(--blush-deep)"/><use href="#bloom" x="150" y="150" width="100" height="100" style="color:var(--gold)"/><use href="#leaf" x="30" y="220" width="60" height="120" style="color:var(--sage)"/></svg>
+        </div>
+        <div class="collage-card c2">
+          <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#fffdf8"/><use href="#bloom" x="40" y="40" width="110" height="110" style="color:var(--sage)"/><use href="#bloom" x="150" y="120" width="90" height="90" style="color:var(--blush-deep)"/></svg>
+        </div>
+        <div class="collage-card c3">
+          <svg viewBox="0 0 220 300"><rect width="220" height="300" fill="#e7d09c"/><use href="#bloom" x="40" y="60" width="100" height="100" style="color:var(--sage-deep)"/><use href="#leaf" x="20" y="160" width="50" height="100" style="color:var(--sage-deep)"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gallery" id="gallery">
+    <div class="container">
+      <div class="section-head center" data-animate>
+        <p class="eyebrow" style="justify-content:center"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>גלריית עבודות</p>
+        <h2 class="section-title">כל זר מספר סיפור</h2>
+      </div>
+
+      <div class="masonry" data-animate>
+        <div class="g-item tall" style="background:#efe0c9">
+          <svg viewBox="0 0 300 420"><rect width="300" height="420" fill="#efe0c9"/><use href="#bloom" x="70" y="80" width="140" height="140" style="color:var(--blush-deep)"/><use href="#leaf" x="40" y="230" width="60" height="120" style="color:var(--sage)"/></svg>
+          <div class="g-overlay"><span class="g-cat">זרי כלה</span><h3 class="g-title">רומנטיקה לבנה</h3></div>
+        </div>
+        <div class="g-item" style="background:#fffdf8">
+          <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#fffdf8"/><use href="#bloom" x="60" y="60" width="150" height="150" style="color:var(--gold)"/></svg>
+          <div class="g-overlay"><span class="g-cat">זרי כלה</span><h3 class="g-title">בוהו חם</h3></div>
+        </div>
+        <div class="g-item wide" style="background:#e7d09c">
+          <svg viewBox="0 0 460 300"><rect width="460" height="300" fill="#e7d09c"/><use href="#bloom" x="60" y="50" width="130" height="130" style="color:var(--sage-deep)"/><use href="#bloom" x="240" y="80" width="110" height="110" style="color:var(--blush-deep)"/></svg>
+          <div class="g-overlay"><span class="g-cat">עיצוב אירועים</span><h3 class="g-title">חופה פורחת</h3></div>
+        </div>
+        <div class="g-item" style="background:#d9a9a0">
+          <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#d9a9a0"/><use href="#bloom" x="70" y="70" width="140" height="140" style="color:#3a2e12"/></svg>
+          <div class="g-overlay"><span class="g-cat">עיצוב אירועים</span><h3 class="g-title">רחבה בפריחה</h3></div>
+        </div>
+        <div class="g-item" style="background:#fffdf8">
+          <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#fffdf8"/><use href="#bloom" x="60" y="60" width="150" height="150" style="color:var(--sage)"/></svg>
+          <div class="g-overlay"><span class="g-cat">סידורי שולחן</span><h3 class="g-title">זהב וסאלביה</h3></div>
+        </div>
+        <div class="g-item tall" style="background:#efe0c9">
+          <svg viewBox="0 0 300 420"><rect width="300" height="420" fill="#efe0c9"/><use href="#bloom" x="70" y="90" width="130" height="130" style="color:var(--gold)"/><use href="#leaf" x="45" y="240" width="55" height="110" style="color:var(--sage)"/></svg>
+          <div class="g-overlay"><span class="g-cat">סידורי שולחן</span><h3 class="g-title">מסע פרחים</h3></div>
+        </div>
+        <div class="g-item" style="background:#e7d09c">
+          <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#e7d09c"/><use href="#bloom" x="65" y="65" width="140" height="140" style="color:var(--blush-deep)"/></svg>
+          <div class="g-overlay"><span class="g-cat">מארזי בוטיק</span><h3 class="g-title">קופסת פרחים</h3></div>
+        </div>
+        <div class="g-item" style="background:#fffdf8">
+          <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#fffdf8"/><use href="#bloom" x="60" y="60" width="150" height="150" style="color:var(--sage-deep)"/></svg>
+          <div class="g-overlay"><span class="g-cat">מארזי בוטיק</span><h3 class="g-title">מארז חגיגי</h3></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why">
+    <div class="container">
+      <div class="section-head center" data-animate>
+        <p class="eyebrow" style="justify-content:center"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>למה לבחור בנו</p>
+        <h2 class="section-title">הפרטים שעושים את ההבדל</h2>
+      </div>
+      <div class="why-grid" data-animate>
+        <div class="why-card glass-dark">
+          <svg class="why-icon" viewBox="0 0 100 100"><use href="#bloom"></use></svg>
+          <h3>טריות יוצאת דופן</h3>
+          <p>הפרחים מגיעים ישר מהספק אל הסידור, בלי תחנות ביניים מיותרות.</p>
+        </div>
+        <div class="why-card glass-dark">
+          <svg class="why-icon" viewBox="0 0 48 48"><use href="#icon-sparkle"></use></svg>
+          <h3>עיצוב בהתאמה אישית</h3>
+          <p>כל קונספט נבנה מחדש סביב הסיפור, הצבעים והאווירה שלכם.</p>
+        </div>
+        <div class="why-card glass-dark">
+          <svg class="why-icon" viewBox="0 0 48 48"><use href="#icon-truck"></use></svg>
+          <h3>משלוח מוקפד</h3>
+          <p>הובלה ומיקום מדויקים, כך שהפרחים מגיעים מושלמים לאירוע.</p>
+        </div>
+        <div class="why-card glass-dark">
+          <svg class="why-icon" viewBox="0 0 48 48"><use href="#icon-heart"></use></svg>
+          <h3>שירות מכל הלב</h3>
+          <p>ליווי אישי מהפגישה הראשונה ועד הפרח האחרון שמונח במקומו.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section packages" id="packages">
+    <div class="container">
+      <div class="section-head center" data-animate>
+        <p class="eyebrow" style="justify-content:center"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>חבילות ועיצובים</p>
+        <h2 class="section-title">מה אפשר להזמין</h2>
+      </div>
+      <div class="pkg-grid" data-animate>
+        <div class="pkg-card glass">
+          <svg class="pkg-icon" viewBox="0 0 100 100"><use href="#bloom"></use></svg>
+          <h3 class="font-serif">עיצוב חופות ואירועים</h3>
+          <p>קונספט פרחוני מלא לחתונה או לאירוע — מהחופה ועד רחבת הריקודים.</p>
+          <a class="btn btn-outline btn-sm" href="#contact">לפרטים</a>
+        </div>
+        <div class="pkg-card glass featured">
+          <span class="pkg-badge">הכי מבוקש</span>
+          <svg class="pkg-icon" viewBox="0 0 100 100"><use href="#bloom"></use></svg>
+          <h3 class="font-serif">סדנאות שזירה</h3>
+          <p>סדנה מודרכת ליצירת זר או סידור פרחים — לקבוצות פרטיות ולאירועי חברה.</p>
+          <a class="btn btn-outline btn-sm" href="#contact">לפרטים</a>
+        </div>
+        <div class="pkg-card glass">
+          <svg class="pkg-icon" viewBox="0 0 100 100"><use href="#bloom"></use></svg>
+          <h3 class="font-serif">זרים בהזמנה אישית</h3>
+          <p>זר יומיומי או זר לאירוע מיוחד, נבחר ונשזר עבורכם באופן אישי.</p>
+          <a class="btn btn-outline btn-sm" href="#contact">לפרטים</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about" id="about">
+    <div class="container about-grid">
+      <div class="about-photo" data-animate>
+        <svg viewBox="0 0 320 400"><rect width="320" height="400" fill="#e7d09c"/><use href="#bloom" x="90" y="50" width="140" height="140" style="color:var(--blush-deep)"/><use href="#leaf" x="50" y="220" width="60" height="130" style="color:var(--sage-deep)"/><use href="#leaf" x="210" y="230" width="55" height="120" style="color:var(--sage)"/></svg>
+        <span class="about-photo-note">תמונה מקצועית של אסתי תוחלף כאן</span>
+      </div>
+      <div class="about-text" data-animate>
+        <p class="eyebrow"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>אודות המעצבת</p>
+        <h2 class="section-title font-serif">אסתי שטיינמץ</h2>
+        <p class="about-quote">"כל אירוע ראוי לעולם פרחוני שנבנה במיוחד עבורו."</p>
+        <p>אסתי מלווה זוגות, משפחות וארגונים בעיצוב עולם פרחוני שנתפר במיוחד עבורם — מהרעיון הראשוני ועד הפרח האחרון שמונח במקומו ביום האירוע. התשוקה לפרחים ולאמנות השזירה עומדת מאחורי כל עבודה: הצבעים, המרקמים והקצב משתנים בהתאם לאופי האירוע ולסיפור שרוצים לספר.</p>
+        <a class="btn btn-outline" href="#contact" style="margin-top:1rem">בואו נכיר</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-head" data-animate>
+        <p class="eyebrow"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>המלצות</p>
+        <h2 class="section-title">מה אומרות הכלות והלקוחות</h2>
+      </div>
+      <div class="t-carousel" id="tCarousel" data-animate>
+        <div class="t-card glass">
+          <span class="t-sample">טקסט לדוגמה</span>
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"כאן המקום להוסיף ציטוט אמיתי מלקוחה מרוצה — מה היא הכי אהבה בעבודה המשותפת."</p>
+          <div><div class="t-name">שם הלקוחה</div><div class="t-role">סוג האירוע · תאריך</div></div>
+        </div>
+        <div class="t-card glass">
+          <span class="t-sample">טקסט לדוגמה</span>
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"מקום נוסף להמלצה אמיתית — כדאי לבקש מהלקוחות משפט קצר וכן אחרי האירוע."</p>
+          <div><div class="t-name">שם הלקוחה</div><div class="t-role">סוג האירוע · תאריך</div></div>
+        </div>
+        <div class="t-card glass">
+          <span class="t-sample">טקסט לדוגמה</span>
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"אפשר גם לצטט הודעת ווטסאפ או תגובה מרשתות חברתיות, בהסכמת הלקוחה."</p>
+          <div><div class="t-name">שם הלקוחה</div><div class="t-role">סוג האירוע · תאריך</div></div>
+        </div>
+      </div>
+      <div class="t-controls">
+        <button id="tPrev" aria-label="הקודם">→</button>
+        <button id="tNext" aria-label="הבא">←</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="ambient" aria-hidden="true">
+      <svg class="p" viewBox="0 0 100 100" style="width:28px;top:15%;left:8%;color:var(--gold-light);animation-duration:9s"><use href="#bloom"></use></svg>
+      <svg class="p" viewBox="0 0 100 100" style="width:20px;top:70%;right:12%;color:var(--blush);animation-duration:10s;animation-delay:-3s"><use href="#bloom"></use></svg>
+    </div>
+    <div class="container contact-grid">
+      <div class="contact-info" data-animate>
+        <p class="eyebrow"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>יצירת קשר</p>
+        <h2 class="section-title font-serif">בואו נתחיל לתכנן</h2>
+        <p>ספרו לי על התאריך, המקום והחזון — ונבנה יחד את העולם הפרחוני של האירוע שלכם.</p>
+
+        <div class="contact-channel glass-dark">
+          <svg viewBox="0 0 32 32"><use href="#icon-whatsapp"></use></svg>
+          <div>
+            <div class="lbl">וואטסאפ</div>
+            <a class="val" href="https://wa.me/972506684846" target="_blank" rel="noopener">050-668-4846</a>
+          </div>
+        </div>
+      </div>
+
+      <form class="form-card glass" id="contactForm" data-animate>
+        <div class="field">
+          <label for="f-name">שם מלא</label>
+          <input id="f-name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-phone">טלפון</label>
+            <input id="f-phone" name="phone" type="tel" required autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="f-date">תאריך האירוע</label>
+            <input id="f-date" name="date" type="date">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-type">סוג האירוע</label>
+          <select id="f-type" name="type">
+            <option>חתונה</option>
+            <option>בר/בת מצווה</option>
+            <option>אירוע חברה</option>
+            <option>יום הולדת</option>
+            <option>זר אישי / מתנה</option>
+            <option>אחר</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-msg">קצת על החזון שלכם</label>
+          <textarea id="f-msg" name="message" rows="3"></textarea>
+        </div>
+        <button class="btn btn-gold form-submit" type="submit">לשליחת הפנייה בוואטסאפ</button>
+        <p class="form-success" id="formSuccess">נפתח חלון וואטסאפ עם כל פרטי הפנייה מוכנים — רק נשאר ללחוץ "שלח".</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo">אסתי שטיינמץ</div>
+        <p class="footer-tag">סטודיו בוטיק לעיצוב פרחים ואירועים — זרים, חופות, סידורי שולחן ומארזים, נשזרים ביד ובלב.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>ניווט</h4>
+          <a href="#about">אודות</a>
+          <a href="#gallery">גלריה</a>
+          <a href="#packages">חבילות</a>
+          <a href="#testimonials">המלצות</a>
+        </div>
+        <div class="footer-col">
+          <h4>יצירת קשר</h4>
+          <a href="https://wa.me/972506684846" target="_blank" rel="noopener">וואטסאפ: 050-668-4846</a>
+          <a href="#contact">טופס יצירת קשר</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 אסתי שטיינמץ · סטודיו לעיצוב פרחים ואירועים</div>
+  </footer>
+
+<script>
+(function(){
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  }, {passive:true});
+
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('mainNav');
+  toggle.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    });
+  });
+
+  var animated = document.querySelectorAll('[data-animate]');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15});
+    animated.forEach(function(el){ io.observe(el); });
+  } else {
+    animated.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  var carousel = document.getElementById('tCarousel');
+  var prev = document.getElementById('tPrev');
+  var next = document.getElementById('tNext');
+  function scrollByCard(dir){
+    var card = carousel.querySelector('.t-card');
+    var amount = card ? card.getBoundingClientRect().width + 22 : 300;
+    carousel.scrollBy({left: dir * amount, behavior:'smooth'});
+  }
+  prev.addEventListener('click', function(){ scrollByCard(1); });
+  next.addEventListener('click', function(){ scrollByCard(-1); });
+
+  var WHATSAPP_NUMBER = '972506684846';
+  var form = document.getElementById('contactForm');
+  var success = document.getElementById('formSuccess');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var data = new FormData(form);
+    var lines = [
+      'פנייה חדשה מהאתר:',
+      'שם: ' + (data.get('name') || ''),
+      'טלפון: ' + (data.get('phone') || ''),
+      data.get('type') ? 'סוג אירוע: ' + data.get('type') : '',
+      data.get('date') ? 'תאריך: ' + data.get('date') : '',
+      data.get('message') ? 'הודעה: ' + data.get('message') : ''
+    ].filter(Boolean);
+    var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
+    window.open(url, '_blank', 'noopener');
+    success.classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>
