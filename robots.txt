@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chaniglazer.github.io/stzFlowers/sitemap.xml
