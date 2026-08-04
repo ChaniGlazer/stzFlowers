@@ -269,24 +269,17 @@
 
   /* ---------- gallery ---------- */
   .gallery{background:var(--cream-deep);}
-  .gallery-marquee{overflow:hidden;}
+  .gallery-icon{
+    width:2.6rem;height:2.6rem;color:var(--gold);margin-inline:auto;margin-bottom:0.8rem;
+  }
+  .gallery-marquee{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}
+  .gallery-marquee::-webkit-scrollbar{display:none;}
   .g-track{
     display:flex;align-items:flex-end;gap:1.1rem;width:max-content;
-    animation:marquee 38s linear infinite;
-  }
-  .g-track:hover{animation-play-state:paused;}
-  @keyframes marquee{
-    from{transform:translateX(0);}
-    to{transform:translateX(-50%);}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .g-track{animation:none;}
-    .g-track .dup{display:none;}
-    .gallery-marquee{overflow-x:auto;}
   }
   .g-item{
     position:relative;flex:0 0 auto;width:15.5rem;height:18.5rem;
-    border-radius:14px;overflow:hidden;cursor:pointer;
+    border-radius:14px;overflow:hidden;cursor:pointer;scroll-snap-align:start;
   }
   .g-item.tall{height:22rem;}
   .g-item.wide{width:21rem;}
@@ -532,12 +525,13 @@
 
   <section class="section gallery" id="gallery">
     <div class="container">
-      <div class="section-head center" data-animate>
+      <div class="section-head center">
+        <svg class="gallery-icon" viewBox="0 0 100 100"><use href="#bloom"></use></svg>
         <p class="eyebrow" style="justify-content:center"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>גלריית עבודות</p>
         <h2 class="section-title">כל זר מספר סיפור</h2>
       </div>
 
-      <div class="gallery-marquee" data-animate>
+      <div class="gallery-marquee" id="galleryScroller">
         <div class="g-track" id="galleryTrack">
           <div class="g-item tall" style="background:#efe0c9">
             <svg viewBox="0 0 300 420"><rect width="300" height="420" fill="#efe0c9"/><use href="#bloom" x="70" y="80" width="140" height="140" style="color:var(--blush-deep)"/><use href="#leaf" x="40" y="230" width="60" height="120" style="color:var(--sage)"/></svg>
@@ -568,39 +562,6 @@
             <div class="g-overlay"><span class="g-cat">מארזי בוטיק</span><h3 class="g-title">קופסת פרחים</h3></div>
           </div>
           <div class="g-item" style="background:#fffdf8">
-            <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#fffdf8"/><use href="#bloom" x="60" y="60" width="150" height="150" style="color:var(--sage-deep)"/></svg>
-            <div class="g-overlay"><span class="g-cat">מארזי בוטיק</span><h3 class="g-title">מארז חגיגי</h3></div>
-          </div>
-
-          <div class="g-item tall dup" aria-hidden="true" style="background:#efe0c9">
-            <svg viewBox="0 0 300 420"><rect width="300" height="420" fill="#efe0c9"/><use href="#bloom" x="70" y="80" width="140" height="140" style="color:var(--blush-deep)"/><use href="#leaf" x="40" y="230" width="60" height="120" style="color:var(--sage)"/></svg>
-            <div class="g-overlay"><span class="g-cat">זרי כלה</span><h3 class="g-title">רומנטיקה לבנה</h3></div>
-          </div>
-          <div class="g-item dup" aria-hidden="true" style="background:#fffdf8">
-            <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#fffdf8"/><use href="#bloom" x="60" y="60" width="150" height="150" style="color:var(--gold)"/></svg>
-            <div class="g-overlay"><span class="g-cat">זרי כלה</span><h3 class="g-title">בוהו חם</h3></div>
-          </div>
-          <div class="g-item wide dup" aria-hidden="true" style="background:#e7d09c">
-            <svg viewBox="0 0 460 300"><rect width="460" height="300" fill="#e7d09c"/><use href="#bloom" x="60" y="50" width="130" height="130" style="color:var(--sage-deep)"/><use href="#bloom" x="240" y="80" width="110" height="110" style="color:var(--blush-deep)"/></svg>
-            <div class="g-overlay"><span class="g-cat">עיצוב אירועים</span><h3 class="g-title">חופה פורחת</h3></div>
-          </div>
-          <div class="g-item dup" aria-hidden="true" style="background:#d9a9a0">
-            <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#d9a9a0"/><use href="#bloom" x="70" y="70" width="140" height="140" style="color:#3a2e12"/></svg>
-            <div class="g-overlay"><span class="g-cat">עיצוב אירועים</span><h3 class="g-title">רחבה בפריחה</h3></div>
-          </div>
-          <div class="g-item dup" aria-hidden="true" style="background:#fffdf8">
-            <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#fffdf8"/><use href="#bloom" x="60" y="60" width="150" height="150" style="color:var(--sage)"/></svg>
-            <div class="g-overlay"><span class="g-cat">סידורי שולחן</span><h3 class="g-title">זהב וסאלביה</h3></div>
-          </div>
-          <div class="g-item tall dup" aria-hidden="true" style="background:#efe0c9">
-            <svg viewBox="0 0 300 420"><rect width="300" height="420" fill="#efe0c9"/><use href="#bloom" x="70" y="90" width="130" height="130" style="color:var(--gold)"/><use href="#leaf" x="45" y="240" width="55" height="110" style="color:var(--sage)"/></svg>
-            <div class="g-overlay"><span class="g-cat">סידורי שולחן</span><h3 class="g-title">מסע פרחים</h3></div>
-          </div>
-          <div class="g-item dup" aria-hidden="true" style="background:#e7d09c">
-            <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#e7d09c"/><use href="#bloom" x="65" y="65" width="140" height="140" style="color:var(--blush-deep)"/></svg>
-            <div class="g-overlay"><span class="g-cat">מארזי בוטיק</span><h3 class="g-title">קופסת פרחים</h3></div>
-          </div>
-          <div class="g-item dup" aria-hidden="true" style="background:#fffdf8">
             <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#fffdf8"/><use href="#bloom" x="60" y="60" width="150" height="150" style="color:var(--sage-deep)"/></svg>
             <div class="g-overlay"><span class="g-cat">מארזי בוטיק</span><h3 class="g-title">מארז חגיגי</h3></div>
           </div>
@@ -837,6 +798,32 @@
     animated.forEach(function(el){ io.observe(el); });
   } else {
     animated.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  // gallery auto-advance
+  var galleryScroller = document.getElementById('galleryScroller');
+  var galleryTrack = document.getElementById('galleryTrack');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(galleryScroller && galleryTrack && !reduceMotion){
+    var galleryTimer = null;
+    function galleryStep(){
+      var item = galleryTrack.querySelector('.g-item');
+      var step = item ? item.getBoundingClientRect().width + 18 : 260;
+      var maxScroll = galleryTrack.scrollWidth - galleryScroller.clientWidth;
+      var atEnd = galleryScroller.scrollLeft <= -maxScroll + 4 || galleryScroller.scrollLeft >= maxScroll - 4;
+      if(atEnd){
+        galleryScroller.scrollTo({left:0, behavior:'smooth'});
+      } else {
+        galleryScroller.scrollBy({left:-step, behavior:'smooth'});
+      }
+    }
+    function startGallery(){ galleryTimer = setInterval(galleryStep, 3200); }
+    function stopGallery(){ clearInterval(galleryTimer); }
+    startGallery();
+    galleryScroller.addEventListener('mouseenter', stopGallery);
+    galleryScroller.addEventListener('mouseleave', startGallery);
+    galleryScroller.addEventListener('touchstart', stopGallery, {passive:true});
+    galleryScroller.addEventListener('touchend', function(){ setTimeout(startGallery, 2500); });
   }
 
   var carousel = document.getElementById('tCarousel');
