@@ -33,7 +33,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Suez+One&family=Miriam+Libre:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#f8f2e7;
@@ -41,13 +41,15 @@
     --sage:#57644a;
     --sage-deep:#333c29;
     --sage-light:#8fa07c;
+    --plum:#6b5568;
+    --plum-deep:#4a3a4c;
     --blush:#d9a9a0;
     --blush-deep:#c07f74;
     --gold:#c6a15b;
     --gold-light:#e7d09c;
     --ink:#2b2a20;
     --ink-dim:#6c6353;
-    --font-display:"Miriam Libre","Frank Ruhl Libre","David Libre","Georgia",serif;
+    --font-display:"Suez One","Miriam Libre","Frank Ruhl Libre","Georgia",serif;
     --font-body:"Assistant","Heebo","Segoe UI","Arial Hebrew","Arial",sans-serif;
     --header-h:4.75rem;
   }
@@ -337,7 +339,7 @@
 
   /* ---------- why choose us ---------- */
   .why{
-    background:linear-gradient(160deg,var(--sage-deep),#28301f);
+    background:linear-gradient(160deg,var(--sage-deep) 0%,var(--plum-deep) 70%,#28301f 100%);
     color:var(--cream);position:relative;overflow:hidden;
   }
   .why .section-title,.why .eyebrow{color:var(--cream);}
@@ -418,7 +420,7 @@
 
   /* ---------- contact ---------- */
   .contact{
-    background:linear-gradient(165deg,var(--sage-deep),#242b1c);color:var(--cream);
+    background:linear-gradient(165deg,var(--plum-deep) 0%,var(--sage-deep) 55%,#242b1c 100%);color:var(--cream);
     position:relative;overflow:hidden;
   }
   .contact .eyebrow{color:var(--gold-light);}
@@ -522,7 +524,7 @@
         <a href="#testimonials">המלצות</a>
       </nav>
       <div class="header-cta">
-        <a class="btn btn-gold btn-sm btn-sm-desktop" href="#contact">להזמנת שזירה אישית</a>
+        <a class="btn btn-gold btn-sm btn-sm-desktop" href="#contact">לייעוץ ועיצוב אישי</a>
         <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="תפריט">
           <span></span>
         </button>
@@ -541,12 +543,12 @@
 
     <div class="container hero-grid">
       <div data-animate>
-        <p class="eyebrow"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>סטודיו בוטיק לעיצוב פרחים ואירועים · בית שמש, ירושלים והסביבה</p>
-        <h1 class="hero-headline font-serif">להפוך רגעים מתוקים<br>ל<em>אמנות שוזרת חיים</em></h1>
-        <p class="hero-sub">עיצוב פרחים אישי לחתונות ואירועים, זרים יוקרתיים ועיצוב חללים — בכל פרח מסופר סיפור שלם.</p>
+        <p class="eyebrow"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>עיצוב פרחים ואירועי יוקרה · בית שמש, ירושלים והסביבה</p>
+        <h1 class="hero-headline font-serif">יוצרת רגעים מרהיבים<br><em>מפרחים</em></h1>
+        <p class="hero-sub">אסתי שטיינמץ מעצבת עולמות פרחוניים יוקרתיים לחתונות ואירועים — כל סידור נשזר ביד, מתוך הקפדה על כל עלה וגבעול.</p>
         <div class="hero-ctas">
-          <a class="btn btn-gold" href="#contact">להזמנת שזירה אישית</a>
-          <a class="btn btn-outline" href="#gallery">לצפייה בגלריה</a>
+          <a class="btn btn-gold" href="#contact">לייעוץ ועיצוב אישי</a>
+          <a class="btn btn-outline" href="#gallery">לקטלוג העיצובים</a>
         </div>
         <div class="hero-stats">
           <div>100%<span>עבודת יד</span></div>
@@ -677,27 +679,33 @@
   <section class="section packages" id="packages">
     <div class="container">
       <div class="section-head center" data-animate>
-        <p class="eyebrow" style="justify-content:center"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>חבילות ועיצובים</p>
+        <p class="eyebrow" style="justify-content:center"><svg viewBox="0 0 100 100"><use href="#bloom"></use></svg>שירותים ייחודיים</p>
         <h2 class="section-title">מה אפשר להזמין</h2>
       </div>
       <div class="pkg-grid" data-animate>
         <div class="pkg-card glass">
           <svg class="pkg-icon" viewBox="0 0 100 100"><use href="#bloom"></use></svg>
-          <h3 class="font-serif">עיצוב חופות ואירועים</h3>
-          <p>קונספט פרחוני מלא לחתונה או לאירוע — מהחופה ועד רחבת הריקודים.</p>
+          <h3 class="font-serif">אירועים פרטיים</h3>
+          <p>קונספט פרחוני מלא לחתונה או לאירוע משפחתי — מהחופה ועד רחבת הריקודים.</p>
           <a class="btn btn-outline btn-sm" href="#contact">לפרטים</a>
         </div>
         <div class="pkg-card glass featured">
           <span class="pkg-badge">הכי מבוקש</span>
           <svg class="pkg-icon" viewBox="0 0 100 100"><use href="#bloom"></use></svg>
-          <h3 class="font-serif">סדנאות שזירה</h3>
-          <p>סדנה מודרכת ליצירת זר או סידור פרחים — לקבוצות פרטיות ולאירועי חברה.</p>
+          <h3 class="font-serif">אירועי חברה</h3>
+          <p>עיצוב פרחוני לכנסים, השקות ואירועי חברה — שמותיר רושם יוקרתי ומדויק.</p>
           <a class="btn btn-outline btn-sm" href="#contact">לפרטים</a>
         </div>
         <div class="pkg-card glass">
           <svg class="pkg-icon" viewBox="0 0 100 100"><use href="#bloom"></use></svg>
-          <h3 class="font-serif">זרים בהזמנה אישית</h3>
-          <p>זר יומיומי או זר לאירוע מיוחד, נבחר ונשזר עבורכם באופן אישי.</p>
+          <h3 class="font-serif">זרי כלה</h3>
+          <p>זר כלה, זרי שושבינות ומתנות פרח — נבחרים ונשזרים עבורכם באופן אישי.</p>
+          <a class="btn btn-outline btn-sm" href="#contact">לפרטים</a>
+        </div>
+        <div class="pkg-card glass">
+          <svg class="pkg-icon" viewBox="0 0 100 100"><use href="#bloom"></use></svg>
+          <h3 class="font-serif">עיצוב חללים מסחריים</h3>
+          <p>סידורים קבועים או תקופתיים למשרדים, מסעדות וחללי מסחר.</p>
           <a class="btn btn-outline btn-sm" href="#contact">לפרטים</a>
         </div>
       </div>
@@ -844,6 +852,15 @@
   window.addEventListener('scroll', function(){
     header.classList.toggle('scrolled', window.scrollY > 12);
   }, {passive:true});
+
+  var heroAmbient = document.querySelector('.hero .ambient');
+  var noMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(heroAmbient && !noMotion){
+    window.addEventListener('scroll', function(){
+      var y = Math.min(window.scrollY, 500);
+      heroAmbient.style.transform = 'translateY(' + (y * 0.18) + 'px)';
+    }, {passive:true});
+  }
 
   var toggle = document.getElementById('navToggle');
   var nav = document.getElementById('mainNav');
